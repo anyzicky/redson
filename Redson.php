@@ -21,15 +21,16 @@ class Redis
 	public $host;
 	public $port;
 	
-	function __construct($host = $this->$__scheme."localhost", $port = "6379")
+	function __construct($host = $this->__scheme."localhost", $port = "6379")
 	{
-		$this->$__redis = fsockopen(, $arUrl['port'], $errno,$errstr);
-		if(!$this->$__redis) {
+
+		$this->__redis = fsockopen($host, $port, $errno,$errstr);
+		if(!$this->__redis) {
 		  die($errno . "(" . $errstr . ")");
 		}
 	}
 
 	function __destruct(){
-		fclose($this->$__redis);
+		fclose($this->__redis);
 	}
 }
