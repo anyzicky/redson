@@ -17,12 +17,13 @@ class Redis
 {
 
 	private $__redis;
-	private $__scheme = "redis://";
-	public $host;
-	public $port;
-	
-	function __construct($host = $this->__scheme."localhost", $port = "6379")
+	public $address;
+
+	function __construct($address = "redis://localhost:6379")
 	{
+		$this->address = parse_url($address);
+		$host = isset($this->address['host']) ? $this->address['host'] : 'localhost';
+		$port = isset($this->address['port']) ? $this->address['port'] : '6379';
 
 		$this->__redis = fsockopen($host, $port, $errno,$errstr);
 		if(!$this->__redis) {
