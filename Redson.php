@@ -46,12 +46,21 @@ class Redis
 		return $ret;
 	}
 
+	/**
+	 * power superman power ping redis server :) 
+	 * @return string just answer +PONG
+	 */
 	function power() {
 		$this->send("*1\r\n\$4\r\nPING\r\n");
 		$respond = fgets($this->__redis, 512);
 		return $respond;
 	}
 
+	/**
+	 * send write command to redis socket 
+	 * @param  string $cmd specific redis command
+	 * @return string      error?
+	 */
 	private function send($cmd) {
 		$write = fwrite($this->__redis, $cmd);
 		if(!$write){
@@ -60,6 +69,10 @@ class Redis
 		}
 	}
 
+	/**
+	 * response read from redis socket and parse respond answer's
+	 * @return mixin error?/string/bool answer read from redis socket
+	 */
 	private function response() {
 		/*
 		In RESP, the type of some data depends on the first byte:
