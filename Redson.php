@@ -109,7 +109,7 @@ class Redis
 				}
 				break;
 			default:
-				throw new Exception("Unknow response...", 1);
+				throw new \Exception("Unknow response...", 1);
 				break;
 		}
 
