@@ -108,6 +108,13 @@ class Redis
 						$response = $resp;
 				}
 				break;
+			case '*':
+				$countResp = intval(substr($respond,1));
+				$response = array();
+				for ($i=0; $i < $countResp; $i++) { 
+					$response[] = $this->response();
+				}
+				break;	
 			default:
 				throw new \Exception("Unknow response...", 1);
 				break;

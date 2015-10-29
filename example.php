@@ -9,4 +9,6 @@ $p = $redis->power();
 //$set = $redis->set('food', 'gamburgers');
 //$food = $redis->get('food');
 //echo "I'am eat tasty ".$food;
+$arKeys = $redis->keys('*');
+var_dump($arKeys);
 ?>
